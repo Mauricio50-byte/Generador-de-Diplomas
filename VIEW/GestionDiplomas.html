@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Generador de Diplomas</title>
+    <link rel="stylesheet" href="http://localhost/Diplomas/VIEW/CSS/StyleGestioDiplomas.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Generador de Diplomas</h1>
+            <p>Complete la información para generar el diploma académico</p>
+        </div>
+
+        <div id="alerts"></div>
+
+        <form action="http://localhost/Diplomas/CONTROLLER/ControladorDiplomas.php" method="post">
+            <div class="form-group">
+                <label for="ne">👤 Nombre del Estudiante:</label>
+                <input type="text" id="ne" name="ne" required placeholder="Ej: Juan Pérez García">
+            </div>
+
+            <div class="form-group">
+                <label for="ce">🆔 Cédula del Estudiante:</label>
+                <input type="text" id="ce" name="ce" required placeholder="Ej: 12345678">
+            </div>
+
+            <div class="form-group">
+                <label for="ca">📚 Carrera del Estudiante:</label>
+                <input type="text" id="ca" name="ca" required placeholder="Ej: Ingeniería de Sistemas">
+            </div>
+
+            <div class="form-group">
+                <label for="co">👨‍🏫 Nombre del Coordinador:</label>
+                <input type="text" id="co" name="co" required placeholder="Ej: Dr. María López">
+            </div>
+
+            <div class="form-group">
+                <label for="in">🏛️ Nombre de la Institución:</label>
+                <input type="text" id="in" name="in" required placeholder="Ej: Universidad Tecnológica Nacional">
+            </div>
+
+            <div class="form-group">
+                <label for="fa">📅 Fecha de Terminación Académica:</label>
+                <input type="date" id="fa" name="fa" required>
+            </div>
+
+            <button type="submit" class="submit-btn">✨ Generar Diploma</button>
+        </form>
+
+        <div class="links">
+            <a href="http://localhost/Diplomas/VIEW/MostrarDiplomas.php">📋 Ver Diplomas Creados</a>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar alertas basadas en parámetros URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const alertsDiv = document.getElementById('alerts');
+        
+        if (urlParams.has('error')) {
+            const error = urlParams.get('error');
+            let mensaje = '';
+            
+            switch(error) {
+                case 'campos_vacios':
+                    mensaje = 'Por favor, complete todos los campos.';
+                    break;
+                case 'error_insertar':
+                    mensaje = 'Error al crear el diploma. Intente nuevamente.';
+                    break;
+                default:
+                    mensaje = 'Ha ocurrido un error.';
+            }
+            
+            alertsDiv.innerHTML = `<div class="alert alert-error">${mensaje}</div>`;
+        }
+
+        // Establecer fecha máxima como hoy
+        document.getElementById('fa').setAttribute('max', new Date().toISOString().split('T')[0]);
+    </script>
+</body>
+</html>
