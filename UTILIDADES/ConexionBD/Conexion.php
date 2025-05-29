@@ -2,7 +2,7 @@
 // UTILIDADES/ConexionBD/Conexion.php
 class Conexion {
     private $host = "localhost";
-    private $puerto = "3333";
+    private $puerto = "3306";
     private $usuario = "root";
     private $password = "root";
     private $base_datos = "diplomas_db";

@@ -1,16 +1,201 @@
+/* Estilos base del body */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f4f6f9;
     margin: 0;
     padding: 20px;
+    line-height: 1.6;
 }
 
-h1 {
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
     text-align: center;
-    color: #2c3e50;
+}
+
+.header h1 {
+    margin: 0 0 10px 0;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+.header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+/* Botón de regreso */
+.back-btn {
+    display: inline-block;
+    margin: 20px 30px;
+    padding: 12px 24px;
+    background: #667eea;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3);
+}
+
+.back-btn:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Alerta de éxito */
+.success-alert {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 15px 30px;
+    margin: 0 30px 20px 30px;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(76, 175, 80, 0.3);
+}
+
+/* Mensaje cuando no hay diplomas */
+.no-diplomas {
+    text-align: center;
+    padding: 60px 30px;
+    color: #6c757d;
+}
+
+.no-diplomas h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #495057;
+}
+
+.no-diplomas p {
+    font-size: 1.1rem;
     margin-bottom: 30px;
 }
 
+.create-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3);
+}
+
+.create-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Grid de diplomas */
+.diplomas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    padding: 30px;
+}
+
+/* Tarjetas de diploma */
+.diploma-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #e1e8ed;
+}
+
+.diploma-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Header de la tarjeta */
+.diploma-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.diploma-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.diploma-id {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Cuerpo de la tarjeta */
+.diploma-body {
+    padding: 25px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #495057;
+    min-width: 130px;
+    font-size: 0.95rem;
+}
+
+.info-value {
+    color: #2c3e50;
+    font-weight: 500;
+    text-align: right;
+    flex: 1;
+    margin-left: 15px;
+    word-break: break-word;
+}
+
+/* Footer de la tarjeta */
+.diploma-footer {
+    background: #f8f9fa;
+    padding: 15px 25px;
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-align: center;
+    border-top: 1px solid #e1e8ed;
+}
+
+/* Estilos para tabla (por si quieres usarla en el futuro) */
 .table-container {
     max-width: 900px;
     margin: auto;
@@ -58,4 +243,65 @@ table tr:hover {
 
 .back-link:hover {
     color: #764ba2;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .diplomas-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .diploma-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .info-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .info-value {
+        text-align: left;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 20px;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .back-btn {
+        margin: 15px 20px;
+        padding: 10px 20px;
+    }
+    
+    .success-alert {
+        margin: 0 20px 15px 20px;
+        padding: 12px 20px;
+    }
+    
+    .diplomas-grid {
+        padding: 15px;
+    }
+    
+    .diploma-body {
+        padding: 20px;
+    }
 }
