@@ -23,7 +23,7 @@ $diplomas = $modelo->obtenerTodosDiplomas();
             <p>Lista de todos los diplomas generados en el sistema</p>
         </div>
 
-        <a href="http://localhost/Diplomas/VIEW/GestionDiplomas.html" class="back-btn">← Crear Nuevo Diploma</a>
+        <a href="http://localhost/Diplomas/VIEW/GestionDiplomas.html" class="back-btn">⬅️ Crear Nuevo Diploma</a>
 
         <?php if (isset($_GET['success']) && $_GET['success'] == 'diploma_creado'): ?>
             <div class="success-alert">
@@ -57,6 +57,17 @@ $diplomas = $modelo->obtenerTodosDiplomas();
                                 <span class="info-value"><?php echo htmlspecialchars($diploma['cedula_estudiante']); ?></span>
                             </div>
                             
+                             <div class="info-row">
+                                <span class="info-label">👌 edad:</span>
+                                <span class="info-value"><?php echo htmlspecialchars($diploma['edad_estudiante']); ?></span>
+                            </div>
+                            
+                            <div class="info-row">
+                                <span class="info-label">⚧️ Género:</span>
+                                <span class="info-value"><?php echo htmlspecialchars($diploma['genero_estudiante']); ?></span>
+                            </div>
+
+
                             <div class="info-row">
                                 <span class="info-label">📚 Carrera:</span>
                                 <span class="info-value"><?php echo htmlspecialchars($diploma['carrera']); ?></span>

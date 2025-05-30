@@ -4,7 +4,7 @@ class Conexion {
     private $host = "localhost";
     private $puerto = "3306";
     private $usuario = "root";
-    private $password = "root";
+    private $password = "";
     private $base_datos = "diplomas_db";
     private $conexion;
     

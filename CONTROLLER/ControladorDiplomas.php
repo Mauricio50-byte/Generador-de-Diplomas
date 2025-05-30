@@ -13,13 +13,15 @@ class DiplomaControlador {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $nombre = trim($_POST['ne']);
             $cedula = trim($_POST['ce']);
+            $edad = trim($_POST['ed']);
+            $genero = trim($_POST['ge']);
             $carrera = trim($_POST['ca']);
             $coordinador = trim($_POST['co']);
             $institucion = trim($_POST['in']);
             $fecha = $_POST['fa'];
             
             // Validar que no esten vacíos
-            if (empty($nombre) || empty($cedula) || empty($carrera) || empty($coordinador)
+            if (empty($nombre) || empty($cedula) || empty($edad) || empty($genero) || empty($carrera) || empty($coordinador)
                 || empty($institucion) || empty($fecha)) {
                 // Mostrar mensaje de error
                 header("Location: ../view/GestionDiplomas.html?error=campos_vacios");
@@ -27,7 +29,7 @@ class DiplomaControlador {
             }
             
             // Insertar en la base de datos
-            $resultado = $this->modelo->insertarDiploma($nombre, $cedula, $carrera, $coordinador, $institucion, $fecha);
+            $resultado = $this->modelo->insertarDiploma($nombre, $cedula, $edad, $genero, $carrera, $coordinador, $institucion, $fecha);
             
             if ($resultado) {
                 header("Location: http://localhost/Diplomas/VIEW/MostrarDiplomas.php?success=diploma_creado");

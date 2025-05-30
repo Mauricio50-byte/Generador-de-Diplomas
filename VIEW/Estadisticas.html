@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Estadísticas de Diplomas</title>
+</head>
+<body>
+    <h1>📊 Estadísticas de Diplomas</h1>
+    
+    <div id="loading">Cargando estadísticas...</div>
+    
+    <div id="contenido" style="display:none;">
+        <h2>📈 Resumen General</h2>
+        <p><strong>Total de Estudiantes:</strong> <span id="totalEstudiantes">0</span></p>
+        <p><strong>Total de Programas:</strong> <span id="totalProgramas">0</span></p>
+        
+        <hr>
+        
+        <h2>👥 Estadísticas por Género</h2>
+        <ul>
+            <li>👨 Masculino: <span id="totalMasculino">0</span></li>
+            <li>👩 Femenino: <span id="totalFemenino">0</span></li>
+            <li>🧔‍♀️ Otro: <span id="totalOtro">0</span></li>
+        </ul>
+        
+        <hr>
+        
+        <h2>📚 Estadísticas por Programa</h2>
+        <div id="estadisticasProgramas">
+            <!-- Se llenará dinámicamente -->
+        </div>
+        
+        <hr>
+        
+        <p><a href="http://localhost/Diplomas/VIEW/GestionDiplomas.html">← Volver al Generador</a></p>
+    </div>
+
+    <script>
+        // Función para cargar estadísticas
+        async function cargarEstadisticas() {
+            try {
+                const response = await fetch('http://localhost/Diplomas/CONTROLLER/ControladorEstadisticas.php');
+                const data = await response.json();
+                
+                // Mostrar estadísticas generales
+                document.getElementById('totalEstudiantes').textContent = data.total_estudiantes || 0;
+                document.getElementById('totalProgramas').textContent = data.total_programas || 0;
+                
+                // Mostrar estadísticas por género
+                document.getElementById('totalMasculino').textContent = data.total_masculino || 0;
+                document.getElementById('totalFemenino').textContent = data.total_femenino || 0;
+                document.getElementById('totalOtro').textContent = data.total_otro || 0;
+                
+                // Mostrar estadísticas por programa
+                const programasDiv = document.getElementById('estadisticasProgramas');
+                programasDiv.innerHTML = '';
+                
+                if (data.programas && data.programas.length > 0) {
+                    data.programas.forEach(programa => {
+                        const programaDiv = document.createElement('div');
+                        programaDiv.innerHTML = `
+                            <h3>📖 ${programa.programa}</h3>
+                            <ul>
+                                <li>Total: <strong>${programa.total}</strong></li>
+                                <li>👨 Masculino: ${programa.masculino}</li>
+                                <li>👩 Femenino: ${programa.femenino}</li>
+                                <li>🧔‍♀️ Otro: ${programa.otro}</li>
+                            </ul>
+                            <br>
+                        `;
+                        programasDiv.appendChild(programaDiv);
+                    });
+                } else {
+                    programasDiv.innerHTML = '<p>No hay datos de programas disponibles.</p>';
+                }
+                
+                // Ocultar loading y mostrar contenido
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('contenido').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error al cargar estadísticas:', error);
+                document.getElementById('loading').innerHTML = 'Error al cargar las estadísticas. Verifique la conexión con el servidor.';
+            }
+        }
+        
+        // Cargar estadísticas al cargar la página
+        window.addEventListener('load', cargarEstadisticas);
+    </script>
+</body>
+</html>
